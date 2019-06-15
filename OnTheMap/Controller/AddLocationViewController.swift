@@ -37,6 +37,7 @@ class AddLocationViewController: UIViewController {
             let request = MKLocalSearch.Request()
             request.naturalLanguageQuery = searchString
             let activeSearch = MKLocalSearch(request: request)
+            setUI(disabled: true)
             activeSearch.start { (response, error) in
                 if response == nil {
                     self.ShowAlert(message: "Could not find location. Please make sure your search is typed correctly.")
@@ -53,6 +54,7 @@ class AddLocationViewController: UIViewController {
                     let coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
                     let span = MKCoordinateSpan(latitudeDelta: 0.1,longitudeDelta: 0.1)
                     self.region = MKCoordinateRegion(center: coordinate, span: span)
+                    self.setUI(disabled: false)
                     self.performSegue(withIdentifier: "addLocationMap", sender: self)
                 }
             }
