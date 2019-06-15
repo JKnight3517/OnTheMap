@@ -36,9 +36,9 @@ class UdacityClient {
             case .getOrDeleteSession: return "https://onthemap-api.udacity.com/v1/session"
             case .getUserInfo(let userId): return "https://onthemap-api.udacity.com/v1/users/" + userId
             case .createNewAccount: return "https://www.udacity.com/account/auth#!/signup"
-            case .getLastHundredLocations: return "https://parse.udacity.com/parse/classes/StudentLocation?limit=100"
-            case .postUserLocation: return "https://parse.udacity.com/parse/classes/StudentLocation"
-            case .updateUserLocation(let objectId): return "https://parse.udacity.com/parse/classes/StudentLocation/" + objectId
+            case .getLastHundredLocations: return "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100"
+            case .postUserLocation: return "https://onthemap-api.udacity.com/v1/StudentLocation"
+            case .updateUserLocation(let objectId): return "https://onthemap-api.udacity.com/v1/StudentLocation/" + objectId
             }
         }
         var url: URL {
@@ -51,15 +51,11 @@ class UdacityClient {
     
     
     class func taskForPostAction<RequestType: Encodable, ResponseType: Decodable>(URLRequest: URLRequest, body: RequestType, responseType: ResponseType.Type, udacityAction: Bool, completion: @escaping (ResponseType?, Error?)-> Void) {
-         print("POST CP A")
         var request = URLRequest
-        print("POST CP B")
         request.httpBody =   try! JSONEncoder().encode(body)
         let session = URLSession.shared
-              print("POST X")
         let task = session.dataTask(with: request) { data, response, error in
             if error != nil { // Handle error…
-                      print("POST CP D")
                 DispatchQueue.main.async{
                     completion(nil, error)
                 }

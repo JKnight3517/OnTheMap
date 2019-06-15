@@ -95,7 +95,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
          UdacityClient.GetStudentLocations(completion: handleStudentLocationResponse(success:studentLocations:error:))
         
     }
-    // Control whtn the map view and other components are disabled
+    // Control when the map view and other components are disabled
     func setUI (disabled: Bool){
         if disabled {
             activityIndicator.startAnimating()
