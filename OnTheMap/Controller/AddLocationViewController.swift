@@ -28,39 +28,39 @@ class AddLocationViewController: UIViewController {
         
     }
     
-  @IBAction  func findLocation() {
+    @IBAction  func findLocation() {
         guard let searchString = locationTextField.text, let mediaURL = linkTextField.text else {
             ShowAlert(message: "You must fill out both the location and link text boxes.")
             return
         }
-    
-            let request = MKLocalSearch.Request()
-            request.naturalLanguageQuery = searchString
-            let activeSearch = MKLocalSearch(request: request)
-            setUI(disabled: true)
-            activeSearch.start { (response, error) in
-                if response == nil {
-                    self.ShowAlert(message: "Could not find location. Please make sure your search is typed correctly.")
-                } else {
-                    // Grab lat and longitude
-                    let latitude = response?.boundingRegion.center.latitude
-                    let longitude = response?.boundingRegion.center.longitude
-                    //CLLocationDegrees is a typealias of Double so setting the doubles declared at top of class
-                    // Create annotation
-                    self.annotation = MKPointAnnotation()
-                    self.annotation.title = searchString
-                    self.annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-                    //zoom in on annotation
-                    let coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
-                    let span = MKCoordinateSpan(latitudeDelta: 0.1,longitudeDelta: 0.1)
-                    self.region = MKCoordinateRegion(center: coordinate, span: span)
-                    self.setUI(disabled: false)
-                    self.performSegue(withIdentifier: "addLocationMap", sender: self)
-                }
+
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = searchString
+        let activeSearch = MKLocalSearch(request: request)
+        setUI(disabled: true)
+        activeSearch.start { (response, error) in
+            if response == nil {
+                self.ShowAlert(message: "Could not find location. Please make sure your search is typed correctly.")
+            } else {
+                // Grab lat and longitude
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                //CLLocationDegrees is a typealias of Double so setting the doubles declared at top of class
+                // Create annotation
+                self.annotation = MKPointAnnotation()
+                self.annotation.title = searchString
+                self.annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                //zoom in on annotation
+                let coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpan(latitudeDelta: 0.1,longitudeDelta: 0.1)
+                self.region = MKCoordinateRegion(center: coordinate, span: span)
+                self.setUI(disabled: false)
+                self.performSegue(withIdentifier: "addLocationMap", sender: self)
             }
+        }
         
     }
-        
+
     
     
     
@@ -75,12 +75,12 @@ class AddLocationViewController: UIViewController {
             
         }
     }
-        
-        func ShowAlert(message: String) {
-            let alertVC = UIAlertController(title: "Error in finding location", message: message , preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
-        }
+
+    func ShowAlert(message: String) {
+        let alertVC = UIAlertController(title: "Error in finding location", message: message , preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
+    }
     
     func setUI(disabled: Bool) {
         if disabled {

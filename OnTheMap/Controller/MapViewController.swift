@@ -44,7 +44,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
     }
     
     
-   
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
@@ -70,7 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
                 let first = student.firstName
                 let last = student.lastName
                 let mediaURL = student.mediaURL
-
+                
                 // Here we create the annotation and set its coordiate, title, and subtitle properties
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coordinate
@@ -86,13 +86,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
             setUI(disabled: false)
         } else {
             setUI(disabled: false)
-           showAlert(message: error?.localizedDescription ?? "Error in retrieving data")
+            showAlert(message: error?.localizedDescription ?? "Error in retrieving data")
         }
         
     }
     @IBAction func refreshButtonTap(_ sender: Any) {
-         setUI(disabled: true)
-         UdacityClient.GetStudentLocations(completion: handleStudentLocationResponse(success:studentLocations:error:))
+        setUI(disabled: true)
+        UdacityClient.GetStudentLocations(completion: handleStudentLocationResponse(success:studentLocations:error:))
         
     }
     // Control when the map view and other components are disabled

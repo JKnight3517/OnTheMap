@@ -52,7 +52,7 @@ class AddLocationMapViewController: UIViewController, MKMapViewDelegate {
             }
         }
         else {
-          showPostLocationFailure(message: error?.localizedDescription ?? "Error in retrieving user information from udacity")
+            showPostLocationFailure(message: error?.localizedDescription ?? "Error in retrieving user information from udacity")
         }
     }
     
