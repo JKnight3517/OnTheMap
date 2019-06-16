@@ -31,13 +31,11 @@ class LoginViewController: UIViewController {
         var requestObject = RequestSession(username: usernameTextField.text!, password: passwordTextField.text!)
         UdacityClient.Login(username: usernameTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
     }
-    
-    
+
     func handleLoginResponse(success: Bool, error: Error?) {
         if success {
             self.setUI(false)
             self.performSegue(withIdentifier: "completeLogin", sender: nil)
-            
         } else {
             print("made it here")
             self.setUI(false)
@@ -65,7 +63,6 @@ class LoginViewController: UIViewController {
         passwordTextField.isEnabled = !disabled
         loginButton.isEnabled = !disabled
         signUpButton.isEnabled = !disabled
-        
     }
     
     // Call when wanting to display errors on top of UI
@@ -75,8 +72,3 @@ class LoginViewController: UIViewController {
         self.present(alertVC, animated: true, completion: nil)
     }
 }
-
-
-
-
-

@@ -29,8 +29,7 @@ class UdacityClient {
         case getLastHundredLocations
         case postUserLocation
         case updateUserLocation(String)
-        
-        
+
         var stringValue: String {
             switch self {
             case .getOrDeleteSession: return "https://onthemap-api.udacity.com/v1/session"
@@ -45,11 +44,7 @@ class UdacityClient {
             return URL(string: stringValue)!
         }
     }
-    
-    
-    
-    
-    
+
     class func taskForPostAction<RequestType: Encodable, ResponseType: Decodable>(URLRequest: URLRequest, body: RequestType, responseType: ResponseType.Type, udacityAction: Bool, completion: @escaping (ResponseType?, Error?)-> Void) {
         var request = URLRequest
         request.httpBody =   try! JSONEncoder().encode(body)
@@ -188,8 +183,7 @@ class UdacityClient {
             }
         }
     }
-    class func PostUserLocation(firstName: String, lastName: String, mapString: String, mediaUrl: String, lat: Double, long: Double,
-                                completion: @escaping(Bool,Error?) -> Void){
+    class func PostUserLocation(firstName: String, lastName: String, mapString: String, mediaUrl: String, lat: Double, long: Double, completion: @escaping(Bool,Error?) -> Void){
         let request = setUpParseApiRequest(url: UdacityClient.Endpoints.postUserLocation.url, requestMethod: "POST")
         let body = PostLocationRequest(uniqueKey: GeneralInfo.userId, firstName: firstName, lastName: lastName, mapString: mapString, mediaURL: mediaUrl, latitude: lat, longitude: long)
         taskForPostAction(URLRequest: request, body: body, responseType: PostLocationResponse.self, udacityAction: false) { (response, error) in
@@ -222,9 +216,6 @@ class UdacityClient {
         }
         return request
     }
-    
-    
-    
 }
 
 

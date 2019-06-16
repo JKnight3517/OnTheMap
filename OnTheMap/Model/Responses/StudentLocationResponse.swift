@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+
 struct StudentLocation: Codable {
     var objectId: String
     var uniqueKey: String?

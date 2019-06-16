@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct student: Codable {
     let lastName: String
     let socialAccounts: [String]?
@@ -49,11 +48,7 @@ struct student: Codable {
     let linkedinUrl: String?
     let googleId: String?
     let imageUrl: String?
-    
-   
-    
-  
-    
+
     enum CodingKeys: String, CodingKey {
         case lastName = "last_name"
         case socialAccounts = "social_accounts"

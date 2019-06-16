@@ -42,9 +42,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
         
         return pinView
     }
-    
-    
-    
+
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
@@ -53,8 +51,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
             }
         }
     }
-    
-    
+
     func handleStudentLocationResponse(success: Bool, studentLocations: [StudentLocation], error: Error?) {
         if success && studentLocations.count > 0 {
             //save the studentLocation array to our baseTabBar so it can be user across tabs
@@ -93,7 +90,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
     @IBAction func refreshButtonTap(_ sender: Any) {
         setUI(disabled: true)
         UdacityClient.GetStudentLocations(completion: handleStudentLocationResponse(success:studentLocations:error:))
-        
     }
     // Control when the map view and other components are disabled
     func setUI (disabled: Bool){
@@ -116,7 +112,4 @@ class MapViewController: UIViewController, MKMapViewDelegate, UINavigationContro
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
-    
-    
-    
 }

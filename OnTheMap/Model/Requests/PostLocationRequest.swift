@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct PostLocationRequest: Codable {
     let uniqueKey: String
     let firstName: String
