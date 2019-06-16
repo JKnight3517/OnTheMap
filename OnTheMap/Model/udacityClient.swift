@@ -35,7 +35,7 @@ class UdacityClient {
             case .getOrDeleteSession: return "https://onthemap-api.udacity.com/v1/session"
             case .getUserInfo(let userId): return "https://onthemap-api.udacity.com/v1/users/" + userId
             case .createNewAccount: return "https://www.udacity.com/account/auth#!/signup"
-            case .getLastHundredLocations: return "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100"
+            case .getLastHundredLocations: return "https://onthemap-api.udacity.com/v1/StudentLocation?limit=100&order=-updatedAt"
             case .postUserLocation: return "https://onthemap-api.udacity.com/v1/StudentLocation"
             case .updateUserLocation(let objectId): return "https://onthemap-api.udacity.com/v1/StudentLocation/" + objectId
             }
